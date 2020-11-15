@@ -1,0 +1,5 @@
+{
+  "nodes": ["https://betanet.lisk.io"],
+  "statsRefreshRate": 10000,
+  "delegatesRefreshRate": 10000
+}

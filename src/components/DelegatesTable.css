@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+  .mobileOff {
+    display: none;
+  }
+}
+
+.mainTable {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: left;
+}
+.mainTable tr:nth-child(even) {
+  background-color: #310000;
+}
+.mainTable tr:hover {
+  background-color: #422222;
+}

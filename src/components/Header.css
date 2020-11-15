@@ -1,0 +1,16 @@
+.Header {
+  text-align: center;
+  font-size: 1.5em;
+}
+@media (max-width: 768px) {
+  .Header {
+    font-size: 1.2em;
+  }
+  sup {
+    display: none;
+  }
+}
+
+sup {
+  font-size: small;
+}
