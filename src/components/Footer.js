@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div>
-      <p className="Footer">Created by korben3</p>
+      <p className="Footer"><a href="https://github.com/Korben3/lisk-mini-explorer/graphs/contributors">Created by korben3</a></p>
     </div>
   );
 };
