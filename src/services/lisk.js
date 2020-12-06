@@ -14,3 +14,13 @@ export const fetchDelegates = () =>
       console.log(err);
       return [];
     });
+
+export const fetchForgerStats = () =>
+  client.delegates
+    .getForgers({
+      limit: 3,
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    });
