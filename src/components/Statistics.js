@@ -1,46 +1,44 @@
 import React, { useState, useEffect } from "react";
 import "./Statistics.css";
-import { APIClient } from "@liskhq/lisk-api-client";
-import { nodes, statsRefreshRate } from "../config/config.json";
+import { statsRefreshRate } from "../config/config.json";
+import { fetchForgerStats } from "../services/lisk";
 
 const Statistics = () => {
-  const [statsTable, setStatsTable] = useState([]);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    setInterval(refreshStats, statsRefreshRate);
+    const intervalId = setInterval(refreshStats, statsRefreshRate);
     refreshStats();
+
+    return () => {
+      clearInterval(intervalId);
+    };
   }, []);
 
-  const refreshStats = () => {
-    // retrieve and display blockchain statistics
-    const client = new APIClient(nodes);
-    client.delegates
-      .getForgers({
-        limit: 3,
-      })
-      .then((res) => {
-        const stats = (
-          <tr>
-            <td> Height: {res.meta.lastBlock} </td>{" "}
-            <td className="textAlignRight">
-              {" "}
-              Next Forgers: {res.data[0].username}, {res.data[1].username},{" "}
-              {res.data[2].username}
-            </td>
-          </tr>
-        );
-        setStatsTable(stats);
-        // console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  // retrieve and display blockchain statistics
+  const refreshStats = async () => {
+    const stats = await fetchForgerStats();
+    setStats(stats);
   };
+
+  if (!stats) {
+    return null;
+  }
+
+  const height = stats.meta.lastBlock;
+  const forgers = stats.data;
 
   return (
     <div>
       <table className="statsTable">
-        <tbody>{statsTable}</tbody>
+        <tbody>
+          <tr>
+            <td>Height: {height} </td>
+            <td className="textAlignRight">
+              Next Forgers:{forgers.map(forger => ` ${forger.username}`)}
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );
