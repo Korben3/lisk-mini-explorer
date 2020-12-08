@@ -1,19 +1,34 @@
-@media (max-width: 768px) {
-  .mobileOff {
-    display: none;
-  }
-}
-
-.mainTable {
+.ant-table-wrapper {
   width: 90%;
   margin: 0 auto;
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: left;
 }
-.mainTable tr:nth-child(even) {
-  background-color: #310000;
+
+.ant-table-cell {
+  border: none !important;
 }
-.mainTable tr:hover {
-  background-color: #422222;
+
+.ant-table-column-sort {
+  background-color: unset !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #420000 !important;
+  color: white !important;
+}
+
+.ant-table-tbody > tr:nth-child(odd) {
+  background-color: #420000;
+  color: white;
+}
+
+.ant-table-tbody > tr:nth-child(even) {
+  background-color: #310000;
+  color: white;
+}
+
+.ant-table-tbody > tr.ant-table-row-level-0:hover > td {
+  background: #422222 !important;
 }

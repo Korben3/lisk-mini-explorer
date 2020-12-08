@@ -3,7 +3,7 @@ body {
   background-image: url("assets/christmasBgnd01.png");
   font-size: 100%;
   font-family: "Open-Sans", sans-serif;
-  color: white;
+  color: white !important;
   margin: 0rem;
 }
 a:link {
