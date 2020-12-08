@@ -6,6 +6,10 @@
   text-align: left;
 }
 
+.ant-table {
+  background-color: #420000;
+}
+
 .ant-table-cell {
   border: none !important;
 }
@@ -15,6 +19,7 @@
 }
 
 .ant-table-thead > tr > th {
+  font-weight: bold;
   background-color: #420000 !important;
   color: white !important;
 }
