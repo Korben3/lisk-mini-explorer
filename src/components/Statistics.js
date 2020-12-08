@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Statistics.css";
 import { statsRefreshRate } from "../config/config.json";
-import { fetchForgerStats } from "../services/lisk";
+import { fetchForgerStats, fetchNodeInfo } from "../services/lisk";
 
 const Statistics = () => {
-  const [stats, setStats] = useState(null);
+  const [forgers, setForgers] = useState([]);
+  const [nodeInfo, setNodeInfo] = useState(null);
 
   useEffect(() => {
     const intervalId = setInterval(refreshStats, statsRefreshRate);
@@ -15,27 +16,25 @@ const Statistics = () => {
     };
   }, []);
 
-  // retrieve and display blockchain statistics
   const refreshStats = async () => {
-    const stats = await fetchForgerStats();
-    setStats(stats);
+    const forgerStats = await fetchForgerStats();
+    const nodeInfo = await fetchNodeInfo();
+
+    setForgers(forgerStats.slice(0, 3));
+    setNodeInfo(nodeInfo);
   };
-
-  if (!stats) {
-    return null;
-  }
-
-  const height = stats.meta.lastBlock;
-  const forgers = stats.data;
 
   return (
     <div>
       <table className="statsTable">
         <tbody>
           <tr>
-            <td>Height: {height} </td>
+            <td>Height: {nodeInfo?.height || "N/A"} </td>
             <td className="textAlignRight">
-              Next Forgers:{forgers.map(forger => ` ${forger.username}`)}
+              Next Forgers:{" "}
+              {forgers.map(
+                (forger, i) => `${forger.username}${i !== forgers.length - 1 ? ", " : ""}`
+              )}
             </td>
           </tr>
         </tbody>

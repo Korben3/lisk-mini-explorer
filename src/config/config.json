@@ -1,5 +1,5 @@
 {
-  "nodes": ["https://betanet.lisk.io"],
+  "node": "https://betanet5.lisk.io",
   "statsRefreshRate": 10000,
   "delegatesRefreshRate": 10000
 }

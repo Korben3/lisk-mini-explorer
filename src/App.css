@@ -30,6 +30,7 @@ a:active {
   margin-bottom: 25px;
   border-radius: 20px;
   padding: 5px;
+  padding-top: 30px;
   overflow-y: hidden;
   box-shadow: 0px 0px 5px 1px #000000;
 }

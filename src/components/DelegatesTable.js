@@ -21,57 +21,45 @@ const columns = [
     responsive: ["xl"],
   },
   {
-    key: "producedBlocks",
-    title: "Produced Blocks",
-    dataIndex: "producedBlocks",
-    sorter: (a, b) => a.producedBlocks - b.producedBlocks,
-    responsive: ["xl"],
-  },
-  {
-    key: "missedBlocks",
-    title: "Missed Blocks",
-    dataIndex: "missedBlocks",
-    sorter: (a, b) => a.missedBlocks - b.missedBlocks,
-    responsive: ["xl"],
-  },
-  {
     key: "consecutiveMissedBlocks",
     title: "Consecutive Missed Blocks",
     dataIndex: "consecutiveMissedBlocks",
     sorter: (a, b) => a.consecutiveMissedBlocks - b.consecutiveMissedBlocks,
+    responsive: ["xl"],
   },
   {
     key: "status",
     title: "Status",
     dataIndex: "consecutiveMissedBlocks",
+    sorter: (a, b) => a.consecutiveMissedBlocks - b.consecutiveMissedBlocks,
     render: value =>
       value > 0 ? <img src={starRed} alt="status" /> : <img src={starGreen} alt="status" />,
-  },
-  {
-    key: "productivity",
-    title: "Productivity",
-    dataIndex: "productivity",
-    sorter: (a, b) => a.productivity - b.productivity,
-    render: value => `${value}%`,
   },
   {
     key: "totalVotesReceived",
     title: "Total Votes Received",
     dataIndex: "totalVotesReceived",
+    defaultSortOrder: "descend",
     sorter: (a, b) => a.totalVotesReceived - b.totalVotesReceived,
     render: value => `${value.toLocaleString("en")} LSK`,
-    responsive: ["xl"],
   },
 ];
 
 const buildTableData = delegates =>
   delegates.map(data => {
-    const { username, totalVotesReceived } = data;
-    const { consecutiveMissedBlocks } = data.delegate;
+    const { address } = data;
+    const {
+      username,
+      lastForgedHeight,
+      consecutiveMissedBlocks,
+      totalVotesReceived,
+    } = data.dpos.delegate;
 
     return {
-      ...data,
       key: username,
+      username,
+      lastForgedHeight,
+      address,
       consecutiveMissedBlocks,
       totalVotesReceived: Number(totalVotesReceived / 100000000),
     };
