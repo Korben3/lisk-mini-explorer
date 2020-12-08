@@ -1,11 +1,11 @@
 import React from "react";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ nodeInfo }) => {
   return (
     <div>
       <p className="Header">
-        Lisk Mini Explorer - Betanet <sup>(Lisk Core 3.0.0-beta.1)</sup>
+        Lisk Mini Explorer - Betanet <sup>(Lisk Core {nodeInfo?.version || "3.0.0-beta2"})</sup>
       </p>
     </div>
   );
