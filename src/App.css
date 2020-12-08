@@ -7,18 +7,18 @@ body {
   margin: 0rem;
 }
 a:link {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 a:visited {
-  color: black;
+  color: grey;
   text-decoration: strong;
 }
 a:hover {
-  color: #0000aa;
+  color: lightgray;
 }
 a:active {
-  color: #0000cc;
+  color: lightgray;
 }
 .container {
   background: #420000;
