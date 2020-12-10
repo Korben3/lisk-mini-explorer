@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import DelegatesTable from "./components/DelegatesTable";
 import Statistics from "./components/Statistics";
 import Footer from "./components/Footer";
-import Snowfall from "react-snowfall";
 import React, { useState, useEffect } from "react";
 import { statsRefreshRate } from "./config/config.json";
 import { fetchForgerStats, fetchNodeInfo } from "./services/lisk";
@@ -33,7 +32,6 @@ const App = () => {
   return (
     <div className="App">
       <div className="container">
-        <Snowfall snowflakeCount={40} />
         <Header nodeInfo={nodeInfo} />
         <Statistics forgers={forgers} nodeInfo={nodeInfo} />
         <DelegatesTable />
