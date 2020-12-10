@@ -37,3 +37,6 @@
 .ant-table-tbody > tr.ant-table-row-level-0:hover > td {
   background: #422222 !important;
 }
+.ant-table.ant-table-small {
+  font-size: 0.95rem;
+}
