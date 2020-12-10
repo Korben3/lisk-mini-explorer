@@ -104,6 +104,7 @@ const DelegatesTable = () => {
       dataSource={buildTableData(delegates)}
       size={"small"}
       pagination={{ pageSize: delegates.length, hideOnSinglePage: true }}
+      showSorterTooltip={false}
     />
   );
 };
