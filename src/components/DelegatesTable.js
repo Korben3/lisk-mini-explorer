@@ -21,6 +21,13 @@ const columns = [
     responsive: ["xl"],
   },
   {
+    key: "lastForgedHeight",
+    title: "Last Forged Height",
+    dataIndex: "lastForgedHeight",
+    sorter: (a, b) => a.lastForgedHeight - b.lastForgedHeight,
+    responsive: ["xl"],
+  },
+  {
     key: "consecutiveMissedBlocks",
     title: "Consecutive Missed Blocks",
     dataIndex: "consecutiveMissedBlocks",
@@ -32,8 +39,12 @@ const columns = [
     title: "Status",
     dataIndex: "consecutiveMissedBlocks",
     sorter: (a, b) => a.consecutiveMissedBlocks - b.consecutiveMissedBlocks,
-    render: value =>
-      value > 0 ? <img src={starRed} alt="status" /> : <img src={starGreen} alt="status" />,
+    render: (value) =>
+      value > 0 ? (
+        <img src={starRed} alt="status" />
+      ) : (
+        <img src={starGreen} alt="status" />
+      ),
   },
   {
     key: "totalVotesReceived",
@@ -41,12 +52,12 @@ const columns = [
     dataIndex: "totalVotesReceived",
     defaultSortOrder: "descend",
     sorter: (a, b) => a.totalVotesReceived - b.totalVotesReceived,
-    render: value => `${value.toLocaleString("en")} LSK`,
+    render: (value) => `${value.toLocaleString("en")} LSK`,
   },
 ];
 
-const buildTableData = delegates =>
-  delegates.map(data => {
+const buildTableData = (delegates) =>
+  delegates.map((data) => {
     const { address } = data;
     const {
       username,
