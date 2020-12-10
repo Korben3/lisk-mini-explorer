@@ -11,13 +11,21 @@ const columns = [
     key: "username",
     title: "Username",
     dataIndex: "username",
-    sorter: (a, b) => a.username < b.username,
+    sorter: (a, b) => {
+      if (a.username < b.username) return -1;
+      if (a.username > b.username) return 1;
+      return 0;
+    },
   },
   {
     key: "address",
     title: "Address",
     dataIndex: "address",
-    sorter: (a, b) => a.address < b.address,
+    sorter: (a, b) => {
+      if (a.address < b.address) return -1;
+      if (a.address > b.address) return 1;
+      return 0;
+    },
     responsive: ["xl"],
   },
   {
@@ -39,12 +47,8 @@ const columns = [
     title: "Status",
     dataIndex: "consecutiveMissedBlocks",
     sorter: (a, b) => a.consecutiveMissedBlocks - b.consecutiveMissedBlocks,
-    render: (value) =>
-      value > 0 ? (
-        <img src={starRed} alt="status" />
-      ) : (
-        <img src={starGreen} alt="status" />
-      ),
+    render: value =>
+      value > 0 ? <img src={starRed} alt="status" /> : <img src={starGreen} alt="status" />,
   },
   {
     key: "totalVotesReceived",
@@ -52,12 +56,12 @@ const columns = [
     dataIndex: "totalVotesReceived",
     defaultSortOrder: "descend",
     sorter: (a, b) => a.totalVotesReceived - b.totalVotesReceived,
-    render: (value) => `${value.toLocaleString("en")} LSK`,
+    render: value => `${value.toLocaleString("en")} LSK`,
   },
 ];
 
-const buildTableData = (delegates) =>
-  delegates.map((data) => {
+const buildTableData = delegates =>
+  delegates.map(data => {
     const { address } = data;
     const {
       username,
